@@ -1,0 +1,7 @@
+<div class="message">
+  <p>
+  	<strong><%= message.user.name %></strong>
+    diz: <strong><font size="3" color="blue"><%= link_to "#{message.texto}", edit_message_path(message) %></font></strong>
+    :: <font size="1" color="red">Em: <%= message.created_at.strftime("%d %b - %H:%M") %></font>
+  </p>
+</div>

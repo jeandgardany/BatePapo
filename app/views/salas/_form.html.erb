@@ -1,0 +1,56 @@
+<%= form_with(model: sala, local: true) do |form| %>
+  <% if sala.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sala.errors.count, "error") %> prohibited this sala from being saved:</h2>
+
+      <ul>
+      <% sala.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ativa %>
+    <%= form.check_box :ativa %>
+  </div>
+
+  <%= form.fields_for :adm, @sala.adm do |f| %>    
+     <%= f.text_field :user_id, value: current_user.id %>  
+   <% end %>
+
+   <h4>Usuários</h4>
+  <div id="participantes">
+    <%= form.fields_for :participantes do |participante| %>
+      <!-- COMENTÁRIO:
+        é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
+        no nosso caso _experience_fields.html.erb
+      -->
+      <%= render 'participante_fields', f: participante %>
+    <% end %>
+ 
+    <!-- COMENTÁRIO:
+      O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
+    -->
+    <div class="links">
+      <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
+      <%= link_to_add_association 'add usuário', form, :participantes %>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

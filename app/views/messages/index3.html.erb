@@ -1,0 +1,9 @@
+<h3>Messages</h3>
+
+<%= render partial: 'message', collection: @messages %>
+
+<hr>
+
+<%= form_for @new_message do |f| %>
+    <%= f.text_field :texto %>
+<% end %>
