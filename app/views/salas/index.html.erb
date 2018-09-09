@@ -21,7 +21,7 @@
         <td><%= sala.nome %></td>
         <td><%= sala.descricao %></td>
         <td><%= sala.ativa %></td>
-        <td><%= sala.adm.user.name %></td>
+        <td><%= sala.adm.user.nome %></td>
         <td><%= link_to 'Entrar', sala %></td>
         <td><%= link_to 'Editar', edit_sala_path(sala) %></td>
         <td><%= link_to 'Deletar', sala, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>

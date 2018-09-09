@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_many :participantes
   has_many :messages, dependent: :destroy
-  #has_many :salas, through: :participantes
-  has_and_belongs_to_many: salas
+  has_many :salas, through: :participantes
+  #has_and_belongs_to_many :salas
   has_one :adm
 
 def user_nome

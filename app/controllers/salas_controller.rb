@@ -29,8 +29,8 @@ class SalasController < ApplicationController
     #@sala.adm_id = current_user.id
     @sala.build_adm
     #@sala.users.build
-    @participante = @sala.participantes.build
-    #@user = @sala.users.build
+    #@participante = @sala.participantes.build
+    @user = @sala.users.build
     #@adm = @sala.adms.build
   end
 
@@ -92,7 +92,7 @@ class SalasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sala_params
-      params.require(:sala).permit(:nome, :descricao, :ativa, :adm_id, adm_attributes: [:id, :user_id, :_destroy, users_attributes: [:id, :email, :nome, :age]], participantes_attributes: [:id, :user_id, :sala_id, :_destroy], users_attributes: [:id, :email, :nome, :age])
+      params.require(:sala).permit(:nome, :descricao, :ativa, :adm_id, adm_attributes: [:id, :user_id, :_destroy, users_attributes: [:id, :email, :nome, :age]], participantes_attributes: [:id, :user_id, :sala_id, :_destroy], users_attributes: [:id, :email, :nome, :age, :password, :password_confirmation, :current_password])
     end
 
     def authorize_sala

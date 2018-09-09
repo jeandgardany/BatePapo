@@ -31,13 +31,13 @@
    <% end %>
 
   <h4>Usuários</h4>
-  <div id="users">
-    <%= form.fields_for :users do |user| %>
+  <div id="participantes">
+    <%= form.fields_for :participantes do |participante| %>
       <!-- COMENTÁRIO:
         é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
         no nosso caso _experience_fields.html.erb
       -->
-      <%= render 'user_fields', f: user %>
+      <%= render 'participante_fields', f: participante %>
     <% end %>
  
     <!-- COMENTÁRIO:
@@ -45,7 +45,7 @@
     -->
     <div class="links">
       <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
-      <%= link_to_add_association 'add usuário', form, :users %>
+      <%= link_to_add_association 'add usuário', form, :participantes %>
       <br><br>
     </div>
   </div>

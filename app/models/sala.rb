@@ -2,6 +2,7 @@ class Sala < ApplicationRecord
 	has_many :messages, dependent: :destroy
 	belongs_to :adm, dependent: :destroy
 	has_many :participantes
+	#has_and_belongs_to_many :users
 	has_many :users, through: :participantes
 
 	accepts_nested_attributes_for :messages, :adm, reject_if: :all_blank, allow_destroy: true
