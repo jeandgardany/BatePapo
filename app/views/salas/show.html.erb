@@ -1,5 +1,10 @@
+<% @usuario = current_user.id %><br>
+<% @sala.participantes.each do |part| %>
+<% (part.user_id == @usuario) %>
+<% end %>
+<% if true %>
 <div align="center" class="container">
-  <h1 class="title">Bate Papo: <%= @sala.nome %></h1>
+  <h1 class="title">Bate Papo: Sala <%= @sala.nome %></h1>
   <div id="messages" >
     <!--%= render (@messages).where(sala_id: Sala.find(params[:id])) %-->
     <%= render @sala.messages %>
@@ -9,4 +14,24 @@
     <input type="text" data-behavior="sala_speaker" placeholder=" Digite a mensagem aqui: " >
   </form>
   <%= paginate @messages %>
+  <br><br>
+
+  <%= link_to 'Voltar', salas_path %>
+
 </div>
+<div align="right" class="container">
+  <h2> Participantes: </h2>
+  <div id="users"> 
+    <% @sala.users.each do |user| %>
+    <%= "Nome: #{user.nome}" %>
+  </div>
+    <% end %>
+</div>
+
+  <% else %>
+
+  <strong>Não autorizado</strong>
+<br><br>
+<strong><%= link_to 'Voltar', salas_path %></strong>
+
+<% end %>

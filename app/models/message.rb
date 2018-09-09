@@ -6,7 +6,7 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :sala
 
-  accepts_nested_attributes_for :sala
+  accepts_nested_attributes_for :sala, reject_if: :all_blank, allow_destroy: true
 
   def sala_id
   	self.sala_id =  Sala.find(params[:id])   	

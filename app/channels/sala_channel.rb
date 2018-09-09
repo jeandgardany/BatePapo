@@ -16,7 +16,7 @@ class SalaChannel < ApplicationCable::Channel
   #Message.create!(user_id: current_user, sala_id: params['sala_id'], texto: data['message'])
   current_user.messages.create!(texto: data['message'], sala_id: params[:sala_id])
   #current_user.messages.create!(texto: data['message'], sala_id: data['sala_id'])
-  #ActionCable.server.broadcast('messages', {message: message.texto, user_id: message.user.name})
+  #ActionCable.server.broadcast('messages', {message: message.texto, user_id: message.user.nome})
   #ActionCable.server.broadcast("messages_#{message_params[:sala_id]}")
   end
 end

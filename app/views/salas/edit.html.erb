@@ -1,6 +1,15 @@
-<h1>Editing Sala</h1>
+<% @usuario = current_user.id  %>
+<% if @usuario == @sala.adm.user.id %>
+<h1>Editar Sala</h1>
 
 <%= render 'form', sala: @sala %>
 
-<%= link_to 'Show', @sala %> |
-<%= link_to 'Back', salas_path %>
+<%= link_to 'Entrar', @sala %> |
+<%= link_to 'Voltar', salas_path %>
+
+<% else %>
+Você não tem permissão para essa ação!
+</br></br>
+<strong><%= link_to 'Voltar', salas_path %></strong>
+
+<% end %>

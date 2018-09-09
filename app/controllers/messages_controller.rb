@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
@@ -21,7 +22,7 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
-    @sala = Sala.find(params[:id])
+    @message.sala = Sala.find(params[:id])
   end
 
   # POST /messages

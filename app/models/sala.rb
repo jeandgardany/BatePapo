@@ -1,10 +1,12 @@
 class Sala < ApplicationRecord
-	has_many :users
-	has_many :messages
-	belongs_to :adm
+	has_many :messages, dependent: :destroy
+	belongs_to :adm, dependent: :destroy
 	has_many :participantes
+	has_many :users, through: :participantes
 
-	accepts_nested_attributes_for :messages, :adm, :users, :participantes
+	accepts_nested_attributes_for :messages, :adm, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :participantes, reject_if: proc { |attributes| attributes[:user_id].blank? }, allow_destroy: true
+	accepts_nested_attributes_for :users
 	#validates :adm, presence: true
 	#validates :participante, uniqueness: true
 
@@ -13,6 +15,14 @@ class Sala < ApplicationRecord
     #end
     def sala_id
     	self.sala_id =  Sala.find(params[:id])   	
+    end
+
+    def user_nome
+    	if self.sala.blank?
+      		"Sem Cadastro"
+    	else
+      		self.sala.user.nome
+    	end
     end
 
 end

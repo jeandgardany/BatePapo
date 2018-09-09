@@ -1,10 +1,13 @@
 class SalasController < ApplicationController
+  #before_action :authenticate_user!
+  before_action :authorize_sala, only: [:show, :edit, :update, :destroy] 
   before_action :set_sala, only: [:show, :edit, :update, :destroy]
 
   # GET /salas
   # GET /salas.json
   def index
-    @salas = Sala.all
+    #authorize Sala
+    @salas =  policy_scope(Sala).all
     @messages = Message.order(created_at: :asc)
   end
 
@@ -17,6 +20,7 @@ class SalasController < ApplicationController
     #@message_sala = @sala.id
     #@sala = Sala.includes(:messages).find_by(id: params[:id])
     #@message = Message.new
+    @participantes = @sala.participantes.build
   end
 
   # GET /salas/new
@@ -88,9 +92,12 @@ class SalasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sala_params
-      params.require(:sala).permit(:nome, :descricao, :ativa, :adm_id, :adm_attributes => [:id, :user_id, :_destroy], :participantes_attributes => [:id, :user_id, :sala_id])
+      params.require(:sala).permit(:nome, :descricao, :ativa, :adm_id, adm_attributes: [:id, :user_id, :_destroy, users_attributes: [:id, :email, :nome, :age]], participantes_attributes: [:id, :user_id, :sala_id, :_destroy], users_attributes: [:id, :email, :nome, :age])
     end
 
+    def authorize_sala
+      authorize Sala
+    end
     #def adm_params
     #  params.require(:adm).permit(:user_id)
     #end
