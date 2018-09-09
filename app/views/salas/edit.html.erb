@@ -4,12 +4,15 @@
 
 <%= render 'form', sala: @sala %>
 
-<%= link_to 'Entrar', @sala %> |
-<%= link_to 'Voltar', salas_path %>
+<div class="col-lg-offset-2 col-lg-10">
+<%= link_to 'Entrar', @sala, :class => 'btn btn-outline-primary btn-sm' %> |
+<%= link_to 'Voltar', salas_path, :class => 'btn btn-outline-primary btn-sm' %>
+</div>
 
 <% else %>
 Você não tem permissão para essa ação!
 </br></br>
-<strong><%= link_to 'Voltar', salas_path %></strong>
-
+<div class="col-lg-offset-2 col-lg-10">
+<strong><%= link_to 'Voltar', salas_path, :class => 'btn btn-outline-primary btn-sm' %></strong>
+</div>
 <% end %>

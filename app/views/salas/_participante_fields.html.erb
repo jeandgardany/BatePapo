@@ -3,13 +3,15 @@
 -->
 <div class="nested-fields">
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.collection_select :user_id, User.order(:nome), :id, :nome, prompt: 'Selecione' %>
+      <%= f.label :user_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.collection_select :user_id, User.order(:nome), :id, :nome, prompt: 'Selecione' %>
+    </div>
   </div>
   <!-- COMENTÁRIO:
     link_to_remove_association é o helper que o cocoon nos fornece para deletar algum nested
   -->
-  <%= link_to_remove_association "remove usuário", f %>
+  <%= link_to_remove_association "remove usuário", f, :class => 'control-label col-lg-2' %>
  
   <br><br><br>
 </div>

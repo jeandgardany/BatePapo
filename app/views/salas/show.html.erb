@@ -16,10 +16,10 @@
   <%= paginate @messages %>
   <br><br>
 
-  <%= link_to 'Voltar', salas_path %>
+  <%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %>
 
 </div>
-<div align="right" class="col-md-4">
+<div align="right" >
   <h2> Participantes: </h2>
   <div id="users"> 
     <% @sala.users.each do |user| %>

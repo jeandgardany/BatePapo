@@ -18,7 +18,7 @@ class SalaPolicy < ApplicationPolicy
   end
 
   def new?
-    user.admin?
+    true
   end
   
   def create?

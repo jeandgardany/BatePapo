@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
-    @message.sala = Sala.find(params[:id])
+    #@message.sala = Sala.find(params[:id])
   end
 
   # POST /messages

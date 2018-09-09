@@ -15,11 +15,13 @@ class SalasController < ApplicationController
   # GET /salas/1.json
   def show
     #@messages = Message.all
-    @messages = Message.page(params[:page]).per(10).order(created_at: :desc)
+    @messages = Message.page(params[:page]).per(20).order(created_at: :asc)
     #@message_user = current_user.id
     #@message_sala = @sala.id
     #@sala = Sala.includes(:messages).find_by(id: params[:id])
     #@message = Message.new
+    #@messages = Sala.includes(:messages).find_by(id: params[:sala_id])
+    #@messages = Message.page(params[:page]).per(10).order(created_at: :asc)
     @participantes = @sala.participantes.build
   end
 
