@@ -1,18 +1,20 @@
 <% @usuario = current_user.id  %>
 <% if @usuario == @sala.adm.user.id %>
-<h1>Editar Sala</h1>
+<div align="center"><h1>Editar Sala</h1></div>
 
 <%= render 'form', sala: @sala %>
 
-<div class="col-lg-offset-2 col-lg-10">
+<div class="col-lg-offset-2 col-lg-10" align="center">
 <%= link_to 'Entrar', @sala, :class => 'btn btn-outline-primary btn-sm' %> |
-<%= link_to 'Voltar', salas_path, :class => 'btn btn-outline-primary btn-sm' %>
+<%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %>
 </div>
 
 <% else %>
-Você não tem permissão para essa ação!
+<div align="center">
+	Você não tem permissão para essa ação!
 </br></br>
 <div class="col-lg-offset-2 col-lg-10">
-<strong><%= link_to 'Voltar', salas_path, :class => 'btn btn-outline-primary btn-sm' %></strong>
+	<strong><%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %></strong>
 </div>
 <% end %>
+</div>

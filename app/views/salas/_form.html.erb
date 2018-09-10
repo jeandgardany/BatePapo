@@ -12,6 +12,7 @@
     </div>
   <% end %>
 
+  <font size="2">
   <div class="form-group">
       <%= form.label :nome, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -39,7 +40,7 @@
       <% end %>
   </div>
   <div class="form-group">
-    <h4 class="control-label col-lg-2">Usuários</h4>
+    <h5 class="control-label col-lg-2">Usuários</h5>
     <div id="participantes">
       <%= form.fields_for :participantes do |participante| %>
         <!-- COMENTÁRIO:
@@ -65,4 +66,4 @@
     </div>
   </div>
 <% end %>
-
+  </font>

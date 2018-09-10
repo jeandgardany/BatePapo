@@ -15,9 +15,9 @@ App.sala = App.cable.subscriptions.create { channel: "SalaChannel", sala_id: App
     #messages.append data['message']
 
   speak: (message) ->
-  	  #@perform 'speak', message: message, sala_id: sala_id
+  	#@perform 'speak', message: message, sala_id: sala_id
 	  @perform 'speak', message: message
-      #$('#messages').append data['message']
+    #$('#messages').append data['message']
 
 $(document).on 'keypress', '[data-behavior~=sala_speaker]', (event) ->
   if event.keyCode is 13 # return = send
