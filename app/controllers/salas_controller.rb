@@ -15,7 +15,7 @@ class SalasController < ApplicationController
   # GET /salas/1.json
   def show
     #@messages = Message.all
-    @messages = Message.page(params[:page]).per(20).order(created_at: :asc)
+    @messages = Message.page(params[:page]).per(12).order(created_at: :asc)
     #@message_user = current_user.id
     #@message_sala = @sala.id
     #@sala = Sala.includes(:messages).find_by(id: params[:id])

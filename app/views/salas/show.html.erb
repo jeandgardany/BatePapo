@@ -1,8 +1,7 @@
 <% @usuario = current_user.id %><br>
-<% @sala.participantes.each do |part| %>
-<% (part.user_id == @usuario) %>
-<% end %>
-<% if true %>
+<% @u = @sala.users.include?(current_user) %>
+
+<% if @u == true %>
 <div align="center" class="container">
   <h1 class="title">Bate Papo: Sala <%= @sala.nome %></h1>
   <div id="messages" >
@@ -29,9 +28,10 @@
 </div>
 
   <% else %>
-
+<div align="center">
   <strong>Não autorizado</strong>
 <br><br>
-<strong><%= link_to 'Voltar', salas_path %></strong>
+<strong><%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %></strong>
 
 <% end %>
+</div>
