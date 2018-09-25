@@ -7,4 +7,12 @@ module SalasHelper
 		end
 	end
 
+	def solicitation_user_nome
+        if self.solicitation.blank?
+            "Sem Cadastro"
+        else
+            self.solicitation.user.nome
+        end
+    end
+
 end

@@ -2,10 +2,9 @@
 <div align="center">
 <h1>Salas de Bate Papo</h1>
 </div>
-
 <% if user_signed_in? %>
 <div align="center">
-<table>
+<table class="table table-striped" >
   <thead>
     <tr>
       <th>Nome</th>
@@ -19,16 +18,16 @@
   <tbody>
     <% @salas.each do |sala| %>
       <tr>
-        <td><%= sala.nome %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= sala.descricao %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= formatar_boolean(sala.ativa) %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= sala.adm.user.nome %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= link_to 'Entrar', sala, :class => 'btn btn-outline-primary btn-sm' %></td>
-        <td><%= link_to 'Editar', edit_sala_path(sala), :class => 'btn btn-outline-primary btn-sm' %></td>
+        <td><%= sala.nome %></td>
+        <td><%= sala.descricao %></td>
+        <td><%= formatar_boolean(sala.ativa) %></td>
+        <td><%= sala.adm.user.nome %></td>
+        <td><%= link_to 'Entrar', sala, :class => 'btn btn-outline-primary btn-sm' %>
+        <%= link_to 'Editar', edit_sala_path(sala), :class => 'btn btn-outline-primary btn-sm' %>
         <% if current_user.id == sala.adm.user.id %>
-        <td><%= link_to 'Deletar', sala, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-outline-primary btn-sm' %></td>
+        <%= link_to 'Deletar', sala, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-outline-primary btn-sm' %>
         <% else %>
-        <td> ::Deletar:: </td>
+         ::Deletar:: </td>
         <% end %>
       </tr>
     <% end %>
@@ -57,10 +56,10 @@
   <tbody>
     <% @salas.each do |sala| %>
       <tr>
-        <td><%= sala.nome %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= sala.descricao %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= sala.ativa %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= sala.adm.user.nome %>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+        <td><%= sala.nome %></td>
+        <td><%= sala.descricao %></td>
+        <td><%= formatar_boolean(sala.ativa) %></td>
+        <td><%= sala.adm.user.nome %></td>
       </tr>
     <% end %>
   </tbody>

@@ -10,8 +10,8 @@ App.sala = App.cable.subscriptions.create { channel: "SalaChannel", sala_id: App
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    alert(data['message'])
-    #$('#messages').append data['message']
+    #alert(data['message'])
+    $('#messages').append data['message']
     #messages.append data['message']
 
   speak: (message) ->

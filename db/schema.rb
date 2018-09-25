@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_173705) do
+ActiveRecord::Schema.define(version: 2018_09_11_141715) do
 
   create_table "adms", force: :cascade do |t|
     t.integer "user_id"
@@ -21,12 +21,20 @@ ActiveRecord::Schema.define(version: 2018_09_09_173705) do
 
   create_table "messages", force: :cascade do |t|
     t.text "texto"
+    t.boolean "lida", default: false
     t.integer "user_id"
     t.integer "sala_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sala_id"], name: "index_messages_on_sala_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_notifications_on_message_id"
   end
 
   create_table "participantes", force: :cascade do |t|
@@ -51,6 +59,17 @@ ActiveRecord::Schema.define(version: 2018_09_09_173705) do
   create_table "salas_users", id: false, force: :cascade do |t|
     t.integer "sala_id", null: false
     t.integer "user_id", null: false
+  end
+
+  create_table "solicitations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "sala_id"
+    t.text "texto"
+    t.boolean "concluida", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sala_id"], name: "index_solicitations_on_sala_id"
+    t.index ["user_id"], name: "index_solicitations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

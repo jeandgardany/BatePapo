@@ -1,7 +1,7 @@
 class SalasController < ApplicationController
   #before_action :authenticate_user!
   before_action :authorize_sala, only: [:show, :edit, :update, :destroy] 
-  before_action :set_sala, only: [:show, :edit, :update, :destroy]
+  before_action :set_sala, only: [:show, :edit, :update, :solicitacao, :destroy]
 
   # GET /salas
   # GET /salas.json
@@ -23,6 +23,12 @@ class SalasController < ApplicationController
     #@messages = Sala.includes(:messages).find_by(id: params[:sala_id])
     #@messages = Message.page(params[:page]).per(10).order(created_at: :asc)
     @participantes = @sala.participantes.build
+    @new_solicitation = @sala.solicitations.build
+    @solicitations = Solicitation.all
+  end
+
+  def solicitacao
+
   end
 
   # GET /salas/new
@@ -33,12 +39,14 @@ class SalasController < ApplicationController
     #@sala.users.build
     #@participante = @sala.participantes.build
     @user = @sala.users.build
+    @solicitation = @sala.solicitations.build
     #@adm = @sala.adms.build
   end
 
   # GET /salas/1/edit
   def edit
     #@sala.adm_id = current_user.id
+    #@solicitation = @sala.solicitations.build
   end
 
   # POST /salas
@@ -94,7 +102,7 @@ class SalasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sala_params
-      params.require(:sala).permit(:nome, :descricao, :ativa, :adm_id, adm_attributes: [:id, :user_id, :_destroy, users_attributes: [:id, :email, :nome, :age]], participantes_attributes: [:id, :user_id, :sala_id, :_destroy], users_attributes: [:id, :email, :nome, :age, :password, :password_confirmation, :current_password])
+      params.require(:sala).permit(:nome, :descricao, :ativa, :adm_id, adm_attributes: [:id, :user_id, :_destroy, users_attributes: [:id, :email, :nome, :age]], participantes_attributes: [:id, :user_id, :sala_id, :_destroy], users_attributes: [:id, :email, :nome, :age, :password, :password_confirmation, :current_password], solicitations_attributes: [:id, :user_id, :sala_id, :texto, :_destroy])
     end
 
     def authorize_sala

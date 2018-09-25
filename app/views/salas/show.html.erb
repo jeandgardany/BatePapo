@@ -1,7 +1,6 @@
 <% @usuario = current_user.id %><br>
-<% @u = @sala.users.include?(current_user) %>
+<% if ((@sala.adm.user.id == current_user.id) && @sala.users.include?(current_user)) == true %>
 
-<% if @u == true %>
 <div align="center" class="container">
   <h1 class="title">Bate Papo: Sala <%= @sala.nome %></h1>
   <div id="messages" >
@@ -10,7 +9,58 @@
   </div>
  
   <form>
-    <input type="text" data-behavior="sala_speaker" placeholder=" Digite a mensagem aqui: " >
+    <input type="text" data-behavior="sala_speaker" placeholder=" Digite a mensagem aqui: " />
+  </form>
+  <%= paginate @messages %>
+  <br><br>
+
+  <%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %>
+
+</div>
+<div align="center" >
+  <h3> Participantes: </h3>
+  <div id="users"> 
+    <% @sala.users.each do |user| %>
+    <%= "Nome: #{user.nome}" %>
+  </div>
+</div>
+<% end %>
+
+<div align="center">
+ <h3> Solicitações: </h3>
+ <% @sala.solicitations.where(concluida: false).each do |solicitation| %>
+ <table>
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Sala</th>
+      <th>Texto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= solicitation.user_nome %></td>
+      <td><%= solicitation.sala.nome %></td>
+      <td><%= solicitation.texto %></td>
+      <td><%= link_to 'Editar', edit_solicitation_path(solicitation) %></td>
+    </tr>
+    </tbody>
+ </table>
+  <% end %>
+</div>
+
+<% elsif @sala.users.include?(current_user) == true %>
+<div align="center" class="container">
+  <h1 class="title">Bate Papo: Sala <%= @sala.nome %></h1>
+  <div id="messages" >
+    <!--%= render (@messages).where(sala_id: Sala.find(params[:id])) %-->
+    <%= render @sala.messages %>
+  </div>
+ 
+  <form>
+    <input type="text" data-behavior="sala_speaker" placeholder=" Digite a mensagem aqui: " />
   </form>
   <%= paginate @messages %>
   <br><br>
@@ -30,8 +80,11 @@
   <% else %>
 <div align="center">
   <strong>Não autorizado</strong>
-<br><br>
-<strong><%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %></strong>
+<br/><br/>
 
-<% end %>
+  <strong><%= link_to 'Voltar', salas_path, :class => 'btn btn-primary btn-sm' %></strong> </br></br></br>
+
+  <%= link_to 'Solicitação', new_sala_solicitation_path(@sala, @solicitation), :class => 'btn btn-primary btn-sm' %>
+
+    <% end %>
 </div>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @solicitation.user.nome %>
+</p>
+
+<p>
+  <strong>Sala:</strong>
+  <%= @solicitation.sala.nome %>
+</p>
+
+<p>
+  <strong>Texto:</strong>
+  <%= @solicitation.texto %>
+</p>
+
+<!--%= link_to 'Editar', edit_solicitation_path(@solicitation) %--> |
+<%= link_to 'Voltar', salas_path %>
